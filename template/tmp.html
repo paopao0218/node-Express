@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>浏览器使用模板引擎</title>
+</head>
+<body>
+    <div id='info'>
+    </div>
+    <script id="notice" type="text/html">
+            <p>我叫:{{pls.name}}</p>
+            <p>今年:{{pls.age}}</p>
+            <p>性别：{{pls.sex}}</p>
+    </script>
+    <script src="node_modules/art-template/lib/template-web.js"></script>
+    <script>
+        var pls = {name:'张三',age:'18',sex:'男'}
+
+        var html = template("notice", {pls: pls});
+
+        console.log(html)
+        document.getElementById('info').innerText = html
+    </script>
+</body>
+</html>
