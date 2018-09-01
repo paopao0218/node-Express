@@ -1,0 +1,64 @@
+
+
+
+
+node框架
+
+	EcmaScript语言
+		没有DOM和BOM
+	核心模块
+		API  (http url fs path os)
+	第三方模块
+		art-template模块
+	自写模块
+		自己创建的文件
+	加载规则 commonJS模块规范
+		文件作用域（文件不会被污染）
+		通信规则（加载和导出）
+		require 
+			var 自定义变量名称 = require('模块')
+			执行被加载模块中的代码
+			得到被加载模块中 exports 导出的接口对象
+		exports（对象，可以导出多个内部成员）  单个文件， 多个文件 -->放在对象中
+			node中的模块作用域，只在当前模块有效
+			对于需要公开的成员挂载到 exports 接口对象就可以
+			放在对象导出多个成员  导出单个成员modul.exports=导出内容
+		exports是一个对象
+		exports.变量=导出的文件 变量命名冲突的问题
+	node中exports默认得到的是一个对象，. 才可以访问到这个属性， exports=add  直接等于这个方法赋值是不可以的
+	module.exports = add;   module
+	每一个模块都有一个module对象
+	每个对象中有一个exports对象
+	把成员挂载module.exports接口对象中
+	exports===module.exports
+	唯独不同的是：导出单个成员时候module.exports   注意对象的重新赋值
+	
+-------------------------------------------------
+加载规则
+	优先从缓存中加载。目的：避免重复加载，提高模块加载效率。
+	npm 命令：
+		npm install --global npm 升级
+		npm init 生成pageage.json文件
+		npm install --save 包名
+		npm help 
+		npm mingling --help 查看他们具体命令
+		/ 磁盘根目录
+		./当前文件根目录
+路径
+	文件操作可以省略./ 	fs.readFile 异步操作API
+	导出文件不可以省略	require('文件名称')  模块加载中，相对路径不能省略./	引入文件
+	去掉 . 就会去磁盘的很目录查找文件	相对路径一定要添加./
+重启服务器
+	nodemon 解决频繁修改代码重启服务问题
+	基于nodeJS开发的第三方命令工作 npm install --global nodemon
+	使用：nodemon app.js; 开启服务
+
+express使用
+	基本路由 映射关系
+静态资源加载
+	1：app.use('/public请求路径'，express.static('./public/' 去这个目录总去查找这个资源))
+	2：	可以认为成别名
+	3：当省略第一个 参数时候，则可以通过省略 public 去访问这个页面  直接这个资源的路径就可以
+	
+
+	
