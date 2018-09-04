@@ -1,0 +1,86 @@
+
+es6 语法
+
+1:let 和 const
+   作用域
+   es5只有全局作用域和函数作用域
+   es6新增块级作用域 for循环用{}包含起来就是一个块级作用域,在{}之外就不存在,生命周期结束
+   	  
+   let:<1>声明的只在自己的作用域内有效
+   	   <2>强制开启严格模式 
+   	      变量生命不能引用就会报错 i is not defined;  
+   	   <3>不能重复声明变量,否则会报错,es5中会被覆盖掉原来的变量
+   const:<1>不能被修改		
+   		 <2>声明的时候一定要赋值;
+   		 <3>声明一个对象,可以被修改,引用类型.
+
+2:结构赋值
+	数组结构赋值:
+		{
+			let a,b,rest;
+			[a,b]=[1,2];
+			console.log(a,b)
+			var a=1,b=2;
+		}
+		{
+			let a,b,rest;
+			[a,b,...rest]=[1,2,3,4,5,6];
+			console.log(a,b)
+			var a=1,b=2;
+		}
+			默认值:
+			如果结构赋值没有在结构上成功配对,就只声明,没有赋值;
+			使用场景:
+			变量之间的交换 let a=1,b=2 [a,b]=[b,a];
+			函数返回值 return [1,2]  let a,b; [a,b]=f();
+			函数返回值为多个情况下,可以选择性的接受变量 return[1,2,3,4,5,6]; left a,b,c [a,,,,,b]=fn();  
+			函数返回值不确定,只要第一个元素 [a,...b]=fn();
+			用不同的块包含,为了不让变量重复赋值
+
+	对象结构赋值:
+		{
+			let a,b;
+			({a,b}={a:1,b:2})
+			console.log(a,b);
+		}
+		{
+			let o={p:42,q:true}
+			let {p,q}=o;
+		}
+			使用场景:
+			前后端通信格式为json 
+				let metaDate={
+						'title':'abc',
+						'desc':[
+							{
+								'title':'text',
+								'desc':'description',
+							}
+						]
+					}
+				let {
+						title:esTitle,
+						desc:[{title:cnTitle}]
+					}=metaDate	
+	字符串结构赋值:
+	布尔值结构赋值:
+	数值结构赋值:
+	函数参数结构赋值:
+
+3:正则语法(重看)
+   构造函数的变化
+   	 let reg1=new RegRxp('xyz','i') i 执行对小小写不敏感的匹配
+   	 let reg2=new RegExp(/xyz/i)
+   	 let reg3=new RegExp(/xyz/ig,'i') 第二个修饰符会覆盖第一个修饰符 i覆盖ig,  reg3.flags flags是用来获取正则对象修饰符的属性;
+   正则方法扩展
+   u修饰符 /\u{61}/u.test('a') 	
+   y修饰符 都是全局匹配,不同点 g是不强调必须是下一个才可以匹配,y必须要求是后面的第一个进行匹配,否则是null,匹配不到 
+   			sticky片段是否开始y的修饰符;
+   s修饰符
+
+4:字符串扩展 balel-polyfill
+	Unicode 
+		
+	遍历接口
+	模板字符串
+	新增方法(10种)

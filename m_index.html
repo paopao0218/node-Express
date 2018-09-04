@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>移动端(开元棋牌)</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+   		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+   		<link rel="stylesheet" href="css/m_reset.css" />
+   		<link rel="stylesheet" href="css/swiper.min.css" />
+   		<link rel="stylesheet" href="css/mStyle.css" />
+   		<script>
+   			var init = function(){
+	   			var shijituFontSize = 100
+	   			var shijituWidth = 750
+	   			var devWidth = Math.max(document.documentElement.clientWidth, window.innerWidth );
+	   			var beishu=devWidth/750
+	   			var htmlFontSize = shijituFontSize * beishu
+	   			document.getElementsByTagName('html')[0].style.fontSize=htmlFontSize + 'px';
+	   			console.log(htmlFontSize + 'px')
+	   		
+   			}
+   			init()
+   			window.onresize = init
+   		</script>
+	</head>
+	<body>
+		<div class="m-wrapper">S
+			<!--header-->
+			<header class="header-wp" style="display: flex;flex-direction: row;height: 500px;">
+				<div style="flex: 1;background: #0000FF;height: 120px;"></div>
+				<div style="flex: 1;background: #FF0000;height: 1.2rem;"></div>
+			</header>
+			<section class="section_main">
+				<!--banner-->
+				<div class="banner-wp">
+					<div class="swiper-container swiper-container1">
+					    <div class="swiper-wrapper swiper-wrapper1">
+					      <div class="swiper-slide swiper-slide1">
+					      	<img src="images/banner-1.png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide1">
+					      	<img src="images/banner-2.png" alt="" />
+					      </div>
+					    </div>
+					    <!-- Add Pagination -->
+					    <div class="swiper-pagination swiper-pagination1"></div>
+				  	</div>
+				</div>
+				<!--title-->
+				<div class="game-title">
+					<h2 class="game-list-title">游戏列表</h2>
+					<div class="line"></div>
+				</div>
+				<!--list-->
+				<div class="list-wp">
+					<div class="swiper-container swiper-container2">
+					    <div class="swiper-wrapper swiper-wrapper2">
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (1).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (2).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (3).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (4).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (5).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (6).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (7).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (8).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (9).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (10).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (11).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (12).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (13).png" alt="" />
+					      </div>
+					      <div class="swiper-slide swiper-slide2">
+					      	<img src="images/game1 (14).png" alt="" />
+					      </div>
+					    </div>
+					    <!-- Add Pagination -->
+					    <div class="swiper-pagination swiper-pagination2"></div>
+					 </div>
+				</div>
+		
+			</section>
+			<!--down-->
+			<div class="down-wp">
+				<!--title-->
+				<div class="game-title">
+					<h2 class="down-list-title">下载游戏</h2>
+					<div class="line"></div>
+				</div>
+				<div class="down">
+					<a href="javaScript:;">
+						<img src="images/ios.png" alt="" />
+					</a>
+					<a href="javaScript:;">
+						<img src="images/android.png" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--<script src="js/jquery.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script>-->
+			var mySwiper1 = new Swiper(
+					'.swiper-container1', 
+					{
+						autoplay: {
+						   disableOnInteraction: false,
+						},
+						speed:300,
+						autoplayDisableOnInteraction : false,
+						pagination: {
+					        el: '.swiper-pagination1',
+        					dynamicBullets: false,
+					    },
+					    loop:true,
+					}
+			)
+			var swiper2 = new Swiper(
+				  	'.swiper-container2', 
+				  	{
+				      slidesPerView: 3,
+				      slidesPerColumn: 2,
+				      spaceBetween: 10,
+				      pagination: {
+				        el: '.swiper-pagination2',
+				        clickable: true,
+				      },
+			    	}
+				);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vip查询中心</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		<div class="vip-wrapper">
+			<div class="header-wrapper">
+				<img src="imgs/title.png" alt="" class="logo"/>
+				<img src="imgs/close.png" alt="" class="close"/>
+			</div>
+			<div class="main-wrapper">
+				<div class="left-wrapper">
+					<div class="left-logo">
+						<img src="imgs/left-logo.png" alt=""  />
+					</div>	
+					<div class="my-water">
+						我的流水：<span id="flowWater">19520</span>
+					</div>
+				</div>
+				<div class="right-wrapper">
+					<div class="right-title">
+						<img src="imgs/right-title.png" alt="" />
+					</div>
+					<div class="right-cont">
+						<img src="imgs/cont-1.png" alt="" />
+						<span>VIP-<span id="vip-number"></span></span>
+						<img src="imgs/cont-2.png" alt="" />
+					</div>
+					<div class="right-line-wrapper">
+						<div class="line">
+							<i>
+								<span>VIP1</span>
+							</i>
+							<i>
+								<span>VIP2</span>
+							</i>
+							<i>
+								<span>VIP3</span>
+							</i>
+							<i>
+								<span>VIP4</span>
+							</i>
+							<i>
+								<span>VIP5</span>
+							</i>
+							<i>
+								<span>VIP6</span>
+							</i>
+							<i>
+								<span>VIP7</span>
+							</i>
+							<i>
+								<span>VIP8</span>
+							</i>
+							<i>
+								<span>VIP9</span>
+							</i>
+						</div>
+						<div class="line-bg"></div>
+					</div>
+					<div class="need-money">
+						差<span id='worse'>5000</span>流水到VIP<span id="vip">2</span>，新特权即将开启
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery1.9.0.min.js"></script>
+		<script>
+			$(function(){
+				
+				
+//				$.ajax({
+//					type:'post',
+//					data:'',
+//					dataType:'json',
+//					url:"",
+//					async:true,
+//					success:function(data){
+						
+					var data={
+						'status':1,//请求成功1
+						'res':{
+							'vip':[10000,200000,1000000,3000000,10000000,30000000,100000000,1000000000,3000000000],
+ 							'flowWater': 3000000000,
+ 							/*我的流水*/
+							'vipNumber':'9' /*vipnumber -1  填满格子数量  */
+						}
+					}
+					
+					if(data.status===1){
+
+						var res=data.res;
+						
+						//计算完成每个vip
+						var  vipInteger=res.vipNumber-1;//要填满的整数的格子 vip5-1=4 4段
+						console.log(vipInteger+'--------vip等级')
+						var  vipIndexFull=vipInteger*61.25;
+						console.log(vipIndexFull+'------vipIndexFull vip等级对应的宽度')
+						$(".line-bg").css({
+							'width':vipIndexFull+'px',
+							'background':'#e9d24e'
+						})
+						console.log($(".line i").size()+'------长度')
+						for(var i=0;i<res.vipNumber;i++){
+							$(".line i").eq(i).addClass('roundColor');
+							$(".line i span").eq(i).addClass('textColor');
+						}
+						//计算每个vip之间的百分比
+						for(var i=0;i<res.vip.length;i++){
+
+							if(i===res.vip.length-1){
+								$("#worse").text(res.flowWater);
+								$("#vip").text(res.vipNumber*1)
+								return false;
+							}
+
+							if(res.vip[i]<res.flowWater && res.flowWater<res.vip[i+1]){
+								
+								var vipItSelf=res.flowWater-res.vip[i];//vip自身的长度
+								console.log(vipItSelf+'-------自身的长度');
+								var Intervalleng=res.vip[i+1]-res.vip[i];
+								console.log(Intervalleng+'-----------区间的长度');
+								var proportion=(vipItSelf/Intervalleng)*61.25;
+								console.log(proportion+'---------占用这一段的比例');
+								console.log(vipIndexFull+proportion+'------------相加在一起')
+								var totle=vipIndexFull+proportion;
+								console.log(totle+"-------总体宽度")
+								$(".line-bg").css({
+									'width':totle+'px',
+									'background':'#e9d24e'
+								})
+								$("#worse").text(res.vip[i+1]-res.flowWater);
+								$("#vip").text(res.vipNumber*1+1)
+							
+								
+							}
+							
+						}
+
+					}else{
+						console.log("请求数据失败")
+					}
+					
+					
+//					},
+//					error:function(error){
+//						console.log(error);
+//					}
+					
+					
+//				});
+//				
+
+		
+			//点击关闭
+			$(".close").click(function(){
+				$(".vip-wrapper").hide();
+			})
+
+		
+	})
+		</script>
+		
+	</body>
+</html>
