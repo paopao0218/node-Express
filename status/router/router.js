@@ -3,22 +3,29 @@
 var express = require("express");
 var router = express.Router();
 var fs = require("fs");
-
+var students = require('../students')
 
 //2 使用路由
 router.use('/public/',express.static('./public'))
 router.get('/',function(req,res){
-    fs.readFile('./api/status.json',function(err,data){
+    // fs.readFile('./api/status.json',function(err,data){
+    //     if(err){
+    //         return err;
+    //     }
+    //     var students=JSON.parse(data).students
+    //     res.render('index.html',{
+    //        students
+    //     })
+    //     console.log(students)
+    // })
+    students.all(function(err,data){
         if(err){
-            return err;
+            return  res.status(500).send('server error')
         }
-        var students=JSON.parse(data).students
-        res.render('index.html',{
-           students
-        })
-        console.log(students)
+        res.render('index.html',students)
     })
 })
+
 
 router.get('/students/new',function(req,res){
    res.render('new.html')
